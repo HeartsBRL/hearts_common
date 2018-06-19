@@ -41,4 +41,7 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   # build the code:
   roscd && cd .. && catkin_make
 
+  # make scripts executable
+  chmod +x ~/workspaces/hearts_erl/src/hearts_common/hearts_setup/install/*.sh
+
 fi
