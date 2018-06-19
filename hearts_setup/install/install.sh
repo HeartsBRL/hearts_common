@@ -34,6 +34,11 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   chmod +x /tmp/hearts_erl_setup/clone_all_repos.sh
   ./tmp/hearts_erl_setup/clone_all_repos.sh
 
+  # Installing opencv3:
+  #chmod +x ~/workspaces/hearts_erl/src/hearts_common/hearts_setup/install_opencv3.sh
+  #./workspaces/hearts_erl/src/hearts_common/hearts_setup/install_opencv3.sh
+
+  # build the code:
   roscd && cd .. && catkin_make
 
 fi
