@@ -26,11 +26,13 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   catkin_make
 
   ## Add config to ~/.bashrc file
-  echo "source ~/workspaces/hearts_erl/devel/setup.bash " >> ~/.bashrc
+  source ~/workspaces/hearts_erl/devel/setup.bash
+  echo "source ~/workspaces/hearts_erl/devel/setup.bash" >> ~/.bashrc
   source ~/.bashrc
 
   # Pulling code:
-  wget https://raw.githubusercontent.com/HeartsBRL/hearts_common/master/hearts_setup/install/clone_all_repos.sh -P ~/workspaces/hearts_erl/src/
+  cd ~/workspaces/hearts_erl/src/
+  wget https://raw.githubusercontent.com/HeartsBRL/hearts_common/master/hearts_setup/install/clone_all_repos.sh
   chmod +x ~/workspaces/hearts_erl/src/clone_all_repos.sh
   ~/workspaces/hearts_erl/src/./clone_all_repos.sh
 
