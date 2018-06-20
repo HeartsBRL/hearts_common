@@ -32,7 +32,7 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   # Pulling code:
   wget https://raw.githubusercontent.com/HeartsBRL/hearts_common/master/hearts_setup/install/clone_all_repos.sh -P /tmp/hearts_erl_setup
   chmod +x /tmp/hearts_erl_setup/clone_all_repos.sh
-  ./tmp/hearts_erl_setup/clone_all_repos.sh
+  /tmp/hearts_erl_setup/./clone_all_repos.sh
 
   # Installing opencv3:
   #chmod +x ~/workspaces/hearts_erl/src/hearts_common/hearts_setup/install_opencv3.sh
