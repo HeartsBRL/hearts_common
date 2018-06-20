@@ -30,7 +30,7 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   source ~/.bashrc
 
   # Pulling code:
-  wget https://raw.githubusercontent.com/HeartsBRL/hearts_common/master/hearts_setup/install/clone_all_repos.sh /tmp/hearts_erl_setup
+  wget https://raw.githubusercontent.com/HeartsBRL/hearts_common/master/hearts_setup/install/clone_all_repos.sh -P /tmp/hearts_erl_setup
   chmod +x /tmp/hearts_erl_setup/clone_all_repos.sh
   ./tmp/hearts_erl_setup/clone_all_repos.sh
 
