@@ -5,9 +5,6 @@
 ## store current directory
 CUR_DIR=$(pwd)
 
-## set up tmp area
-mkdir /tmp/hearts_erl_setup
-
 # Only run if the workspace doesn't already exist:
 if [ ! -d "~/workspaces/hearts_erl" ]; then
 
