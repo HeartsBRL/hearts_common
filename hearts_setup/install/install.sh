@@ -26,7 +26,7 @@ if [ ! -d "~/workspaces/hearts_erl" ]; then
   catkin_make
 
   ## Add config to ~/.bashrc file
-  echo "source ~/workspaces/hearts_erl/devel/setup.bash" >> ~/.bashrc
+  echo "source ~/workspaces/hearts_erl/devel/setup.bash " >> ~/.bashrc
   source ~/.bashrc
 
   # Pulling code:
