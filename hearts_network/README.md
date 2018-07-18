@@ -3,7 +3,8 @@
 ## Network:
 
 SSID: HeartsBRL
-Pass: See Docs
+
+Pass: See Docs / YMH
 
 ## Tiago:
 
