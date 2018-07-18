@@ -1,5 +1,10 @@
 # Installation Guide:
 
+## Network:
+
+SSID: HeartsBRL
+Pass: See Docs
+
 ## Tiago:
 
 Note: You'll need to edit the file system on Tiago, which requires some code: (Page 69 of the Handbook 1.5.0).
