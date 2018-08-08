@@ -15,8 +15,15 @@ In order to work with the filesystem as read-write do the following:
 ```
 ssh root@tiago-25c                        #where "tiago-25c" depends on your tiago machine
 root@tiago-25c:~# rw
-root@tiago-25c:~# nano /etc/hosts         #Check ###/etc/hosts
+root@tiago-25c:~# nano /etc/hosts
 ```
+
+  # /etc/hosts file:
+  Add the following:
+
+  ```
+  [YOUR_LOCAL_IP]   [your_local_hostname]
+  ```
 
 In order to return to the previous state do the following (Close code editor):
 ```
@@ -24,15 +31,6 @@ root@tiago-0c:~# ro
 root@tiago-0c:~# exit
 ```
 
-### Setting the network:
-
-
-#### /etc/hosts file:
-Add the following:
-
-```
-[YOUR_LOCAL_IP]   [your_local_hostname]
-```
 
 ## On Local Machine:
 
