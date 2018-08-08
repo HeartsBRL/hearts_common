@@ -42,7 +42,7 @@ Add the following:
 [YOUR_LOCAL_IP]   [your_local_hostname]
 ```
 
-## On Loacal Machine:
+## On Looooacal Machine:
 
 On every machine you want to connect:
 
