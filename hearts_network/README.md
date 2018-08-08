@@ -18,12 +18,12 @@ root@tiago-25c:~# rw
 root@tiago-25c:~# nano /etc/hosts
 ```
 
-  # /etc/hosts file:
-  Add the following:
+### /etc/hosts file:
+Add the following:
 
-  ```
-  [YOUR_LOCAL_IP]   [your_local_hostname]
-  ```
+```
+[YOUR_LOCAL_IP]   [your_local_hostname]
+```
 
 In order to return to the previous state do the following (Close code editor):
 ```
