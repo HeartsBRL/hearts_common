@@ -13,23 +13,15 @@ Note: You'll need to edit the file system on Tiago, which requires some code: (P
 
 In order to work with the filesystem as read-write do the following:
 ```
-root@tiago-0c:~# rw
-Remounting as rw...
-Mounting /ro as read-write
-Mounting /opt as read-write
-Mounting /var/lib/dpkg as read-write
-Binding system files...
-root@tiago-0c:~# chroot /ro
+ssh root@tiago-25c                        #where "tiago-25c" depends on your tiago machine
+root@tiago-25c:~# rw
+root@tiago-25c:~# nano /etc/hosts         #Check ###/etc/hosts
 ```
 
-In order to return to the previous state do the following:
+In order to return to the previous state do the following (Close code editor):
 ```
-root@tiago-0c:~# exit
 root@tiago-0c:~# ro
-Remount /ro as read only
-Remount /var/lib/dpkg as read only
-Remount /opt as read only
-Unbinding system files
+root@tiago-0c:~# exit
 ```
 
 ### Setting the network:
@@ -42,7 +34,7 @@ Add the following:
 [YOUR_LOCAL_IP]   [your_local_hostname]
 ```
 
-## On Looooacal Machine:
+## On Local Machine:
 
 On every machine you want to connect:
 
