@@ -34,17 +34,12 @@ Unbinding system files
 
 ### Setting the network:
 
-#### bash.rc file:
-```
-export ROS_MASTER_URI=http://localhost:11311
-export ROS_IP=ipaddress
-```
 
 #### /etc/hosts file:
 Add the following:
 
 ```
-192.168.0.114   control tiago-25c
+[YOUR_LOCAL_IP]   [your_local_hostname]
 ```
 
 ## On Loacal Machine:
@@ -53,13 +48,13 @@ On every machine you want to connect:
 
 #### bash.rc file:
 ```
-export ROS_MASTER_URI=http://localhost:11311
-export ROS_IP=ipaddress
+export ROS_MASTER_URI=http://10.68.0.1:11311
+export ROS_IP=YOUR_IP
 ```
 
 #### /etc/hosts file:
 
 Add the following:
 ```
-192.168.0.114   control tiago-25c
+10.68.0.1   control tiago-25c
 ```
