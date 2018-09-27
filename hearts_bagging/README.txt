@@ -28,16 +28,16 @@ NOTE: while the content of the data files saved by the robot is not used for sco
 REQUIRED FOR EVERY TASK (or INTERNAL DATA):
 ========================
 
-Num	|Topic                        |Type                        |Frame Id            |Notes
+Num |Topic                        |Type                        |Frame Id            |Notes
 ====|=============================|============================|====================|==============
 1   |/erlc/robot_pose             |geometry_msgs/PoseStamped   |/map                |10 Hz
 2   |/erlc/marker_pose            |geometry_msgsPoseStamped    |/map                |10 Hz
 3   |/erlc/trajectory             |nav_msgs/Path               |/map                |Each (re)plan
-4	  |/erlc/<device>/image         |sensor_msgs/Image           |/<device>_frame     |-
-5	  |/erlc/<device>/camera_info   |sensor_msgs/CameraInfo      |-	                  |-
-6	  |/erlc/depth_<id>/pointcloud  |sensor_msgs/PointCloud2     |/depth_<id>_frame   |-
-7	  |/erlc/scan_<id>              |sensor_msgs/LaserScan       |/laser_<id>_frame   |10-40Hz
-8	  |tf	                          |tf                          |-                   |-
+4   |/erlc/<device>/image         |sensor_msgs/Image           |/<device>_frame     |-
+5   |/erlc/<device>/camera_info   |sensor_msgs/CameraInfo      |-                   |-
+6   |/erlc/depth_<id>/pointcloud  |sensor_msgs/PointCloud2     |/depth_<id>_frame   |-
+7   |/erlc/scan_<id>              |sensor_msgs/LaserScan       |/laser_<id>_frame   |10-40Hz
+8   |tf                           |tf                          |-                   |-
 
 Notes:
 #1) The 2D robot pose at the foor level, i.e., z = 0 and only yaw rotation.
@@ -74,7 +74,7 @@ NOTE: the images and pointclouds in the Internal Data (i.e. the rosbag data bein
 Topic                 |Type
 /ERLSCR/command       |std_msgs/String
 /ERLSCR/visitor       |std_msgs/String
-/ERLSCR/audio	        |audio_common_msgs/AudioData
+/ERLSCR/audio         |audio_common_msgs/AudioData
 /ERLSCR/notification  |std_msgs/String
 
 NOTES:
@@ -93,7 +93,7 @@ Additional rosbag information described in the following table
 NOTE: the images and pointclouds in the Internal Data (i.e. the rosbag data being collected for every task) should contain the object to be operated.
 
 Topic           |Type
-/erlc/command	  |std_msgs/String
+/erlc/command   |std_msgs/String
 /erlc/audio     |audio_common_msgs/AudioData
 
 NOTES:
