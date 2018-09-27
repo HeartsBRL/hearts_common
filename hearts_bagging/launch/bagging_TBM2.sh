@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # changeable variables.
-filepath="/home/rwakelingg/workspaces/hearts_erl/src/hearts_bagging/bags"
+
+filepath="$(rospack find hearts_bagging)/bags"
 category="TBM2"
 teamname="HEARTS"
 now=$(date +"%Y%m%d%H%M")
