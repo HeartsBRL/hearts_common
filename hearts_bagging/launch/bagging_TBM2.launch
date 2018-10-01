@@ -1,0 +1,5 @@
+<launch>
+
+  <node name="bagging_TBM2" pkg="hearts_bagging" type="bagging_TBM2.sh" />
+
+</launch>

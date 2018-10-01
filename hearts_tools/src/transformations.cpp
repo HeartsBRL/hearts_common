@@ -11,6 +11,8 @@ bool Transformations::setNodeHandle(ros::NodeHandle* nh)
     tf_listener->waitForTransform("map", "laser_link", ros::Time(0), ros::Duration(10.0));
     tf_listener->waitForTransform("base_link", "left_arm_link1", ros::Time(0), ros::Duration(10.0));
     tf_listener->waitForTransform("base_link", "right_arm_link1", ros::Time(0), ros::Duration(10.0));
+    nh = 0;
+    return nh;
 }
 
 //PointCloud Msg to CvMat
