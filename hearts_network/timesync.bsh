@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then 
+    echo
+    echo "***** usage is: ---------------------"
+    echo
+    echo "timesync.bsh  <IP or addresss of time server>"
+    echo
+    echo "*************************************"
+    exit
+fi
+echo
+echo "use ntp to time syc to "$1
+echo
+sudo service ntp stop
+sudo ntpdate -s %1
+sudo service ntp start
+echo
+echo "Time sync completed"

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then 
+    echo
+    echo "***** usage is: ---------------------"
+    echo
+    echo "tiago_reroute.bsh  <new gatewy IP addess>"
+    echo
+    echo "*************************************"
+    exit
+fi
+
+chg_dgw=$1
+dgw=`ip route | grep default`
+
+echo 
+echo "CURRENT default gateway is:"
+echo $dgw
+echo
+
+echo "CHANGE to default gateway ?:"
+echo $chg_dgw
+echo
+echo "Do you wish to make the dgw change?(y/n)"
+read answer
+if [ $answer = "n" ]
+    then 
+        echo
+        echo "No changes made"
+        echo
+        exit
+else
+
+    echo
+    echo
+        ##################################
+        sudo route del default
+        sudo route add default gw $chg_dgw
+        ##################################
+
+        newdgw=`ip route | grep default`
+        echo
+        echo "NEW      default gateway is:"
+        echo $newdgw
+        echo
+        echo "Modified route table:"
+        ip route
+        echo
+fi
