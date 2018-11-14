@@ -19,11 +19,11 @@ class GenericController(object):
         self.pub_motion =        rospy.Publisher("motion_name", String, queue_size=10)
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
         #self.cost_clear = rospy.ServiceProxy('move_base/clear_costmaps',std_srvs/EmptyRequest)
+        self.mixer_mic =          alsaaudio.Mixer(control='Capture')
 
         #init toggle
         self.toggle_stt('on')
         rospy.sleep(1)
-
         self.toggle_stt('off')
 
         self.mixer_mic = alsaaudio.Mixer(control='Capture')
@@ -78,20 +78,43 @@ class GenericController(object):
         self.speech = speech
 
     ### listen for a specific word in SPEECH
-    def stt_detect_word(self,word):
-        self.toggle_stt('on')
+    def stt_detect_words(self,word_list, num_retries):
+        ''' Listens for a specific word or phrase, word specifies
+        what word(s) is/are to be detected, num-retries indicates how many times
+        the robot should attempt to detect the word. '''
 
-        answer = None
-        while answer is None:
-            answer = self.speech
-            rospy.sleep(0.2)
-        self.toggle_stt('off')
-        print(answer)
-        # TODO insert for loop here to cycle through possible words in word
-        if word in answer:
-            self.good_answer = True
-            self.toggle_stt('off')
-            rospy.loginfo("target word: '"+word+"' detected")
+        tries = 0
+
+        #word = str(word)
+        self.good_answer = False
+        while self.good_answer == False:
+            if tries < num_retries:
+                self.toggle_stt('on')
+                rospy.loginfo("Listening for: '"+str(word_list)+"'")
+                rospy.loginfo(tries)
+
+                answer = None
+                while answer is None:
+                    answer = self.speech
+                    rospy.sleep(0.2)
+                self.toggle_stt('off')
+                rospy.loginfo(answer)
+
+                # TODO insert for loop here to cycle through list of possible words in word
+                for word in word_list:
+                    if word in answer:
+                        self.good_answer = True
+                        self.toggle_stt('off')
+                        rospy.loginfo("target word: '"+word+"' detected")
+                        return True
+                    else:
+                        rospy.loginfo("Did not detect target word(s): '"+word+"'")
+
+                tries += 1
+            else:
+                rospy.loginfo("Stopping Listening for: '"+word+"'")
+                break
+
 
     ################## NAVIGATION FUNCTIONS ###################################
 
