@@ -17,7 +17,10 @@ class GenericController(object):
         self.pub_location_goal = rospy.Publisher('/hearts/navigation/goal/location',
                                                                 String, queue_size=10) #tbm2
         self.pub_motion =        rospy.Publisher("motion_name", String, queue_size=10)
+        self.pub_stt_toggle =    rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
+        
+        
         #self.cost_clear = rospy.ServiceProxy('move_base/clear_costmaps',std_srvs/EmptyRequest)
         self.mixer_mic =          alsaaudio.Mixer(control='Capture')
 
@@ -47,9 +50,15 @@ class GenericController(object):
         if status == 'on' :
             self.speech = None
             self.sub_cmd=rospy.Subscriber("/hearts/stt", String, self.stt_callback)
+            msg = Bool()
+            msg.data = True
+            self.pub_stt_toggle.publish(msg)
             self.mixer_mic.setrec(1)
             print('***** Listening for speech, converting speech to text')
         else:
+            msg = Bool()
+            msg.data = False
+            self.pub_stt_toggle.publish(msg)
             self.sub_cmd.unregister()
             self.mixer_mic.setrec(0)
             print('***** NOT! Listening for speech')
