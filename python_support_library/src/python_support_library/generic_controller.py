@@ -1,6 +1,6 @@
 import rospy
 import time
-from std_msgs.msg import Empty, String
+from std_msgs.msg import Empty, String, Bool
 from geometry_msgs.msg import Pose2D, Twist, Pose
 from roah_rsbb_comm_ros.msg import Benchmark, BenchmarkState, DevicesState, TabletState
 import std_srvs.srv
@@ -19,8 +19,8 @@ class GenericController(object):
         self.pub_motion =        rospy.Publisher("motion_name", String, queue_size=10)
         self.pub_stt_toggle =    rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
-        
-        
+
+
         #self.cost_clear = rospy.ServiceProxy('move_base/clear_costmaps',std_srvs/EmptyRequest)
         self.mixer_mic =          alsaaudio.Mixer(control='Capture')
 
@@ -88,10 +88,17 @@ class GenericController(object):
 
     ### listen for a specific word in SPEECH
     def stt_detect_words(self,word_list, num_retries):
-        ''' Listens for a specific word or phrase, word specifies
-        what word(s) is/are to be detected, num-retries indicates how many times
-        the robot should attempt to detect the word. '''
+        '''
+        Listens for a specific word or phrase, word_list specifies
+        what word(s) in a list are to be detected, num-retries indicates how many times
+        the robot should attempt to detect the word(s).
 
+        Examples:
+        detected, word = self.stt_detect_words(["water"], 2)
+        detected, word = self.stt_detect_words(["self.objects"], 2)
+
+        '''
+        rospy.loginfo("-----------Starting stt_detect_words-------------")
         tries = 0
 
         #word = str(word)
@@ -100,7 +107,7 @@ class GenericController(object):
             if tries < num_retries:
                 self.toggle_stt('on')
                 rospy.loginfo("Listening for: '"+str(word_list)+"'")
-                rospy.loginfo(tries)
+                rospy.loginfo("Try number: " +str(tries))
 
                 answer = None
                 while answer is None:
@@ -113,16 +120,20 @@ class GenericController(object):
                 for word in word_list:
                     if word in answer:
                         self.good_answer = True
-                        self.toggle_stt('off')
+                        #self.toggle_stt('off')
                         rospy.loginfo("target word: '"+word+"' detected")
-                        return True
+                        rospy.loginfo("-----------Ending stt_detect_words-------------")
+                        return (True, word)
                     else:
                         rospy.loginfo("Did not detect target word(s): '"+word+"'")
 
                 tries += 1
             else:
                 rospy.loginfo("Stopping Listening for: '"+word+"'")
-                break
+                rospy.loginfo("-----------Ending stt_detect_words-------------")
+                return (False, None)
+                #break
+
 
 
     ################## NAVIGATION FUNCTIONS ###################################
