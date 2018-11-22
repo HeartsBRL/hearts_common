@@ -17,6 +17,7 @@ declare -i notclean=0
 declare -i numrepos=0
 declare -i numerror=0
 declare -i numheads=0
+declare -i aheads=0
 
 # store the current dir
 CUR_DIR=$(pwd)
@@ -70,26 +71,32 @@ for i in $(find . -name ".git" | cut -c 3-); do
     if [ $? == 0 ] ; then
         numheads=$numheads+1
     fi  
+
+    git status | grep   'branch is ahead' > /dev/null
+    if [ $? == 0 ] ; then
+        aheads=$aheads+1
+    fi  
     echo "______________________________________________________________";
     # lets get back to the PULL_DIR
     cd $PULL_DIR
 done
 cd $PULL_DIR
 echo ""
-echo "TOTAL Number of .git repositories detected      : "$numrepos
+echo "TOTAL Number of .git repositories detected        : "$numrepos
 echo
 echo 'List of repositories:'
 echo
 find . -name '.git'
 echo
-echo "TOTAL Number of .git repositories detected      : "$numrepos
+echo "TOTAL Number of .git repositories detected        : "$numrepos
 echo "****************************************************************************"
 echo "***** Please review any messages reported below with a non-zero count! *****"
 echo "****************************************************************************"
 echo
-echo "Number of .git repositoies  ## NOT clean !! ##  : "$notclean
-echo "Number of .git repositoies with Errors detected : "$numerror
-echo "Number of .git repositoies  with HEAD detached  : "$numheads
+echo "Number of .git repositoies  ## NOT clean !! ##    : "$notclean
+echo "Number of .git repositoies  where branch is ahead : "$aheads
+echo "Number of .git repositoies with Errors detected   : "$numerror
+echo "Number of .git repositoies  with HEAD detached    : "$numheads
 cd $CUR_DIR
 echo
 echo "****************************************************************"
