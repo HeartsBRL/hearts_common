@@ -35,6 +35,7 @@ cd $PULL_DIR
 echo
 echo "*******************************************************"
 echo "***** Checking the status of all git repositories *****"
+echo "***** on $DATE"
 echo "*******************************************************"
 
 # Find all git repositories 
@@ -51,7 +52,7 @@ for i in $(find . -name ".git" | cut -c 3-); do
        echo "RSBB git submodule area -- It is updated as a submodule which is different from normal!" 
        echo "                           see ERL RSBB install documentation."
        echo
-       commdir=`echo $i | sed -e s/.git//`
+       commdir=`echo $i | sed -e s/.git//` #strip offf .git repo file name so that "cd" works
        cd $commdir
     else
        cd "$i";
