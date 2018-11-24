@@ -11,7 +11,7 @@
 #                         !there may be others?
 #                   - added list of repositores for completeness in the summary of findings
 #                   - added list of local/remote branches by repo:
-#                         execute with a "B" as first argumnet to include in the screen output
+#                         execute with a "B" as first argument to include in the screen output
 #                   - added code for special case of sub module in at_home_rsbb_comm_ros/comm
 #
 #############################################################################################
