@@ -3,13 +3,15 @@
 # author  : Alex Sleat
 # Created : October 2018
 # Purpose : To check the status of all HEARTS repositories in ~/workspaces/hearts_erl/src
-#s
+#
 #############################################################################################
 # Updates:
-# 22 Nov 2018 Derek - restored colour ouput from git to the screen
+# 24 Nov 2018 Derek - restored colour ouput from git to the screen
 #                   - added counters for report content for: not clean, errors or detached head
-#                     !there may be others?s
+#                         !there may be others?
 #                   - added list of repositores for completeness in the summary of findings
+#                   - added list of local/remote branches by repo:
+#                         execute with a "B" as first argumnet to include in the screen output
 #                   - added code for special case of sub module in at_home_rsbb_comm_ros/comm
 #
 #############################################################################################
@@ -18,6 +20,9 @@ declare -i numrepos=0
 declare -i numerror=0
 declare -i numheads=0
 declare -i aheads=0
+declare -i onmaster=0
+
+DATE=`date`
 
 # store the current dir
 CUR_DIR=$(pwd)
@@ -53,53 +58,73 @@ for i in $(find . -name ".git" | cut -c 3-); do
        cd ..
     fi
 
-    # check status - display to screen
-    git status ;
 
-    # look for informative  messages in the git status reports
-    git status | grep -i  'working directory clean' > /dev/null
+    # Dispaly git status report to the screen 
+    git status
+    # and store a copy of the report for analysis
+    GITREPORT=`git status`
+
+    # list all Local & REmote branches
+    if [ $1 == "B" ] || [ $1 == "b" ] ; then
+        echo
+        echo "LOCAL : Branches:"
+        git branch -l
+        echo "REMOTE: Branches:"
+        git branch -r
+    fi
+
+    # Summarise informative  messages from the git status report  
+    echo $GITREPORT | grep -i  'working directory clean' > /dev/null
     if [ $? != 0 ] ; then
         notclean=$notclean+1
     fi    
 
-    git status | grep -i  "fatal\|error" > /dev/null
-    if [ $? != 0 ] ; then
-        numerror=$numerrors+1
+    echo $GITREPORT | grep -i  "fatal\|error" > /dev/null
+    if [ $? == 0 ] ; then
+        numerror=$numerror+1
     fi  
 
-    git status | grep   'HEAD detached' > /dev/null
+    echo $GITREPORT | grep   'HEAD detached' > /dev/null
     if [ $? == 0 ] ; then
         numheads=$numheads+1
     fi  
 
-    git status | grep   'branch is ahead' > /dev/null
+    echo $GITREPORT | grep   'branch is ahead' > /dev/null
     if [ $? == 0 ] ; then
         aheads=$aheads+1
+    fi
+
+    echo $GITREPORT | grep   'On branch master' > /dev/null
+    if [ $? == 0 ] ; then
+        onmaster=$onmaster+1    
     fi  
     echo "______________________________________________________________";
     # lets get back to the PULL_DIR
     cd $PULL_DIR
 done
+
 cd $PULL_DIR
 echo ""
-echo "TOTAL Number of .git repositories detected        : "$numrepos
+echo "TOTAL Number of .git repositories detected       : "$numrepos
 echo
 echo 'List of repositories:'
 echo
 find . -name '.git'
 echo
-echo "TOTAL Number of .git repositories detected        : "$numrepos
+echo "TOTAL Number of .git repositories detected       : "$numrepos
+echo "Number of .git repositoies  'On branch master'   : "$onmaster
+echo
 echo "****************************************************************************"
 echo "***** Please review any messages reported below with a non-zero count! *****"
 echo "****************************************************************************"
 echo
-echo "Number of .git repositoies  ## NOT clean !! ##    : "$notclean
-echo "Number of .git repositoies  where branch is ahead : "$aheads
-echo "Number of .git repositoies with Errors detected   : "$numerror
-echo "Number of .git repositoies  with HEAD detached    : "$numheads
-cd $CUR_DIR
+echo "Number of .git repositoies  ## NOT clean !! ##   : "$notclean
+echo "Number of .git repositoies where branch is ahead : "$aheads
+echo "Number of .git repositoies with Errors detected  : "$numerror
+echo "Number of .git repositoies with HEAD detached    : "$numheads
 echo
 echo "****************************************************************"
 echo "****** ALL DONE in: $0"
+echo "****** on $DATE"
 echo "****************************************************************"
-
+cd $CUR_DIR
