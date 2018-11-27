@@ -8,19 +8,31 @@
 # Updates:
 # 24 Nov 2018 Derek - restored colour ouput from git to the screen
 #                   - added counters for report content for: not clean, errors or detached head
-#                         !there may be others?
+#                         etc, !there may be others?
 #                   - added list of repositores for completeness in the summary of findings
-#                   - added list of local/remote branches by repo:
-#                         execute with a "B" as first argument to include in the screen output
+#                   - added list of local/remote branches by repo:                  
 #                   - added code for special case of sub module in at_home_rsbb_comm_ros/comm
 #
 #############################################################################################
+set -u
+
+# set up colours
+GREEN="\033[32m"
+YELLOW="\033[33m"
+NORM="\033[0m"
+
+# temp file
+TEMPDIR=~/very_very.tmp
+
+# initialise counters
 declare -i notclean=0
 declare -i numrepos=0
 declare -i numerror=0
 declare -i numheads=0
 declare -i aheads=0
+declare -i behinds=0
 declare -i onmaster=0
+declare -i repobehind=0
 
 DATE=`date`
 
@@ -29,22 +41,26 @@ CUR_DIR=$(pwd)
 
 PULL_DIR=~/workspaces/hearts_erl/src
 
+# initialise temp file
+echo > $TEMPDIR
+
+
 cd $PULL_DIR
 
 # Let the person running the script know what's going on.
+echo -e $YELLOW
 echo
-echo "*******************************************************"
-echo "***** Checking the status of all git repositories *****"
+echo "***********************************************************"
+echo "***** Checking the status of all git repositories in: *****"
+echo "***** $PULL_DIR"
+echo "***********************************************************"
 echo "***** on $DATE"
-echo "*******************************************************"
+echo "***********************************************************"
+echo -e $NORM
 
 # Find all git repositories 
 for i in $(find . -name ".git" | cut -c 3-); do
     numrepos=$numrepos+1
-    echo "";
-    echo "########### $i";
-    echo ""
-
     # We have to go to the .git parent directory to execute "git status"
     # but handle special case of RSBB which has a .git 'file' not 'directory!'
     echo $i | grep 'ros/comm'  > /dev/null
@@ -59,20 +75,22 @@ for i in $(find . -name ".git" | cut -c 3-); do
        cd ..
     fi
 
+    ACTIVEBRANCH=`git branch | grep \* | cut -c  3-`
 
+    echo -e "$YELLOW ########### $i  -  CHECKOUT Branch is: $GREEN$ACTIVEBRANCH$NORM"
+    echo 'Repository: ' $i  --   'current CHECKOUT branch: ' $ACTIVEBRANCH >>$TEMPDIR
+    echo ""
     # Dispaly git status report to the screen 
     git status
     # and store a copy of the report for analysis
     GITREPORT=`git status`
 
-    # list all Local & REmote branches
-    if [ $1 == "B" ] || [ $1 == "b" ] ; then
-        echo
-        echo "LOCAL : Branches:"
-        git branch -l
-        echo "REMOTE: Branches:"
-        git branch -r
-    fi
+    # list all Local & Remote branches
+    echo
+    echo "########## LOCAL/REMOTE : Branches:"
+    git branch -av
+    BRANCHREPORT=`git branch -av`
+    echo "##########    END for all Branches:"
 
     # Summarise informative  messages from the git status report  
     echo $GITREPORT | grep -i  'working directory clean' > /dev/null
@@ -95,37 +113,64 @@ for i in $(find . -name ".git" | cut -c 3-); do
         aheads=$aheads+1
     fi
 
+    echo $BRANCHREPORT | grep   'behind' > /dev/null
+    if [ $? == 0 ] ; then
+        behinds=$behinds+1
+    fi
+
     echo $GITREPORT | grep   'On branch master' > /dev/null
     if [ $? == 0 ] ; then
         onmaster=$onmaster+1    
     fi  
+
+    # check if local repo out of date with'remote'
+    echo -e $YELLOW'----------------- Check "local repo" to "remote repo" status'
+    git remote show origin | grep -i "local out of date"
+    if [ $? == 0 ] ; then
+        repobehind=$repobehind+1
+    fi    
+    
     echo "______________________________________________________________";
+    echo -e $NORM
+
     # lets get back to the PULL_DIR
     cd $PULL_DIR
 done
 
-cd $PULL_DIR
+cd $CUR_DIR
+
 echo ""
 echo "TOTAL Number of .git repositories detected       : "$numrepos
 echo
 echo 'List of repositories:'
 echo
-find . -name '.git'
+
+find $PULL_DIR -name '.git'
+
+echo -e $YELLOW
+echo "List of any repositiries where master is NOT the current checked out branch:"
+cat $TEMPDIR | grep -v master
+rm  $TEMPDIR
+echo -en $NORM
+
 echo
 echo "TOTAL Number of .git repositories detected       : "$numrepos
-echo "Number of .git repositoies  'On branch master'   : "$onmaster
+echo "Number of .git repositoies CHECKOUT as master'   : "$onmaster
 echo
 echo "****************************************************************************"
 echo "***** Please review any messages reported below with a non-zero count! *****"
 echo "****************************************************************************"
 echo
-echo "Number of .git repositoies  ## NOT clean !! ##   : "$notclean
-echo "Number of .git repositoies where branch is ahead : "$aheads
-echo "Number of .git repositoies with Errors detected  : "$numerror
-echo "Number of .git repositoies with HEAD detached    : "$numheads
+echo "Number of .git repositories  ## NOT clean !! ##    : "$notclean
+echo "Number of .git repositories where repo   is behind : "$repobehind "- pull needed"
+echo "Number of .git repositories where branch is behind : "$behinds    "- pull needed"
+echo "Number of .git repositories where branch is ahead  : "$aheads     "- push nedded"
+echo "Number of .git repositories with Errors detected   : "$numerror
+echo "Number of .git repositories with HEAD detached     : "$numheads
 echo
+echo -e $GREEN
 echo "****************************************************************"
 echo "****** ALL DONE in: $0"
 echo "****** on $DATE"
 echo "****************************************************************"
-cd $CUR_DIR
+echo -e $NORM
