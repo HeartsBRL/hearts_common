@@ -17,6 +17,7 @@
 #                   - Now check only  BRANCHREPORT for aheads to avoid duplication of count
 #                   - User will be best redkrecting report to file for detailed review
 #                    ie:  ./check_all_repos.sh > mysummary.txt
+#                   - for ahead and behind detection adding an "Escaped ["    for  uniqueness
 #
 #############################################################################################
 set -u
@@ -118,12 +119,12 @@ for i in $(find . -name ".git" | cut -c 3-); do
     #     aheads=$aheads+1
     # fi
 
-    echo $BRANCHREPORT | grep   'behind' > /dev/null
+    echo $BRANCHREPORT | grep   '\[behind' > /dev/null
     if [ $? == 0 ] ; then
         behinds=$behinds+1
     fi
 
-    echo $BRANCHREPORT | grep   'ahead' > /dev/null
+    echo $BRANCHREPORT | grep   '\[ahead' > /dev/null
     if [ $? == 0 ] ; then
         aheads=$aheads+1
     fi
