@@ -14,7 +14,7 @@
 #                   - added code for special case of sub module in at_home_rsbb_comm_ros/comm
 #
 # 06 Dec 2018 Derek - Change notation for aheads/behinds as they are for all Branches
-#                   - Now check both GITREPORT & BRANCHREPORT for aheads
+#                   - Now check only  BRANCHREPORT for aheads to avoid duplication of count
 #                   - User will be best redkrecting report to file for detailed review
 #                    ie:  ./check_all_repos.sh > mysummary.txt
 #
@@ -112,11 +112,11 @@ for i in $(find . -name ".git" | cut -c 3-); do
     if [ $? == 0 ] ; then
         numheads=$numheads+1
     fi  
-
-    echo $GITREPORT | grep   'branch is ahead' > /dev/null
-    if [ $? == 0 ] ; then
-        aheads=$aheads+1
-    fi
+    # 'ahead' is covered in branch report so removed
+    # echo $GITREPORT | grep   'branch is ahead' > /dev/null
+    # if [ $? == 0 ] ; then
+    #     aheads=$aheads+1
+    # fi
 
     echo $BRANCHREPORT | grep   'behind' > /dev/null
     if [ $? == 0 ] ; then
