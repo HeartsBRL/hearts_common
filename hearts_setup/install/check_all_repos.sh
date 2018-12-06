@@ -13,6 +13,11 @@
 #                   - added list of local/remote branches by repo:                  
 #                   - added code for special case of sub module in at_home_rsbb_comm_ros/comm
 #
+# 06 Dec 2018 Derek - Change notation for aheads/behinds as they are for all Branches
+#                   - Now check both GITREPORT & BRANCHREPORT for aheads
+#                   - User will be best redkrecting report to file for detailed review
+#                    ie:  ./check_all_repos.sh > mysummary.txt
+#
 #############################################################################################
 set -u
 
@@ -118,6 +123,11 @@ for i in $(find . -name ".git" | cut -c 3-); do
         behinds=$behinds+1
     fi
 
+    echo $BRANCHREPORT | grep   'ahead' > /dev/null
+    if [ $? == 0 ] ; then
+        aheads=$aheads+1
+    fi
+
     echo $GITREPORT | grep   'On branch master' > /dev/null
     if [ $? == 0 ] ; then
         onmaster=$onmaster+1    
@@ -163,9 +173,10 @@ echo "**************************************************************************
 echo
 echo "Number of .git repositories  ## NOT clean !! ##    : "$notclean
 echo "Number of .git repositories where repo   is behind : "$repobehind "- pull needed"
+echo "         *** Counts are For ALL Branches ***         "
 echo "Number of .git repositories where branch is behind : "$behinds    "- pull needed"
 echo "Number of .git repositories where branch is ahead  : "$aheads     "- push nedded"
-echo "Number of .git repositories with Errors detected   : "$numerror
+echo
 echo "Number of .git repositories with HEAD detached     : "$numheads
 echo
 echo -e $GREEN
