@@ -87,8 +87,9 @@ class tc(object):
    
     # Standard text styles
     def debug   (self,txt): print tc.fg_white  +tc.bold      +tc.bg_blue+tc.norm    + tc.end.format(txt)
+    def input   (self,txt): print tc.fg_blue   +tc.bold                             + tc.end.format(txt)
     def warning (self,txt): print tc.fg_yellow +tc.bold                             + tc.end.format(txt)
-    def error   (self,txt): print tc.fg_red   +tc.bold       +tc.bg_white+tc.norm   + tc.end.format(txt)
+    def error   (self,txt): print tc.fg_red    +tc.bold      +tc.bg_white+tc.norm   + tc.end.format(txt)
     def info    (self,txt): print tc.fg_cyan   +tc.bold                             + tc.end.format(txt)
     def result  (self,txt): print tc.fg_green  +tc.bold                             + tc.end.format(txt)
 
@@ -99,10 +100,11 @@ if __name__ == '__main__':
 
     print("\nStandard Styles to be used for the purpose indicated .....")
     prt.debug  ("DEBUG  : This is the colour for temporary debug messages")    
+    prt.input  ("INPUT  : This is the colour for asking for input data")
     prt.warning("WARNING: This is the colour for non-fatal       messages")
     prt.error  ("ERROR  : This is the colour for     fatal error messages")
     prt.info   ("INFO   : This is the colour for useful Message/status info during processing")  
-    prt.result ("RESULTS: This is the colour for significant results")
+    prt.result ("RESULT : This is the colour for significant results")
 
     print("\nNormal Colours .....")
     prt.red     ("RED      : my text in RED")
