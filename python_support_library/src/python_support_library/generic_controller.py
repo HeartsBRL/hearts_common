@@ -13,16 +13,19 @@ class GenericController(object):
         rospy.Subscriber("/hearts/navigation/status", String, self.navigation_callback)#tbm2
 
         # init publishers
-        self.tts_pub =           rospy.Publisher("/hearts/tts", String, queue_size=10) #tbm2
+        self.tts_pub           = rospy.Publisher("/hearts/tts", String, queue_size=10) #tbm2
+        self.pub_stt_toggle    = rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
         self.pub_location_goal = rospy.Publisher('/hearts/navigation/goal/location',
                                                                 String, queue_size=10) #tbm2
-        self.pub_motion =        rospy.Publisher("motion_name", String, queue_size=10)
-        self.pub_stt_toggle =    rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
+        self.pub_motion        = rospy.Publisher("motion_name", String, queue_size=10)
+        self.pub_follow_toggle = rospy.Publisher("/hearts/follow_toggle", Bool, queue_size = 10)
+        
+        
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
 
 
         #self.cost_clear = rospy.ServiceProxy('move_base/clear_costmaps',std_srvs/EmptyRequest)
-        self.mixer_mic =          alsaaudio.Mixer(control='Capture')
+        self.mixer_mic         = alsaaudio.Mixer(control='Capture')
 
         #init toggle
         self.toggle_stt('on')
@@ -194,3 +197,24 @@ class GenericController(object):
         #rospy.sleep(5)
 
         #TODO some sort of making sure you actually get there before moving on
+        
+    ########################## FOLLOWING #######################################    
+        
+    def toggle_follow(self, status):
+        ''' Turns following behaviour on and off 
+            how to use: self.toggle_follow('on') to turn on following, self.toggle_follow('off') to turn off following. 
+            The robot should begin following the nearest person and continue to do so even if someone else crosses the paths.  '''
+
+        if status == 'on' :
+            msg = Bool()
+            msg.data = True
+            self.pub_follow_toggle.publish(msg)
+            print('***** START following person')
+
+        else:
+            msg = Bool()
+            msg.data = False
+            self.pub_follow_toggle.publish(msg)
+            print('***** STOP following person')
+        
+        
