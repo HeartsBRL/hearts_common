@@ -1,10 +1,11 @@
 #!/bin/bash
 #############################################################################################
 # script  : check_all_repos_and_report.sh
-# author  : Alex Sleat
-# Created : October 2018
+# author  : Derek Rpper
+# Created : 17 Feb 2018
 # Purpose : To check the status of all HEARTS repositories in ~/workspaces/hearts_erl/src
-#
+#           Based on check_all_repos.sh BUT now a file is writtenof all data that needed
+#           to be reviewed. File is: /home/$USER/repo_report.txt 
 #############################################################################################
 # Updates:
 #############################################################################################
@@ -31,26 +32,26 @@ local -n rptflag=$3
 
 if [ $rptflag == 0  ]; then
     echo -e "\n#########################################################################" >> $REPORTFILE
-    echo    "##### GIT REPOSITORY : $1  " >> $REPORTFILE
-    echo -e "#########################################################################" >> $REPORTFILE
+    echo    "##### GIT REPOSITORY : $1  --- $3 "                                          >> $REPORTFILE        
+    echo -e "#########################################################################"   >> $REPORTFILE
     echo    "$content"                    >> $REPORTFILE
     echo -e "\n##### Review Issue(s)"     >> $REPORTFILE
 fi
 
 # update correct flag variable
-if has_substring $3 "GIT"
+if fnc_has_substring $3 "GIT"
     then
-    GITRPTFLAG=1  # true - one git satus report already printed  
+    GIT_STATUS=1  # true - one git satus report already printed  
 fi
 
 
-if has_substring $3 "BRANCH"
+if fnc_has_substring $3 "BRANCH"
     then    
-    BRANCHRPTFLAG=1 # true -  one branch status report already printed  
+    BRANCH_STATUS=1 # true -  one branch status report already printed  
 fi
 } # end of function fnc_writereport
 
-function has_substring () {
+function fnc_has_substring () {
 ######################################
 # arg 1: string to  be searched
 # arg 2: substring to be found
@@ -64,7 +65,7 @@ then
 else 
     return 1 # true
 fi
-} #end of function has_substring
+} #end of function fnc_has_substring
 
 
 ##############################################################################################
@@ -96,8 +97,8 @@ declare -i behinds=0
 declare -i onmaster=0
 declare -i repobehind=0
 
-declare -i GITRPTFLAG=0
-declare -i BRANCHRPTFLAG=0
+declare -i GIT_STATUS=0
+declare -i BRANCH_STATUS=0
 
 
 # store the current dir
@@ -123,8 +124,8 @@ echo -e $NORM
 
 # Find all git repositories 
 for i in $(find . -name ".git" | cut -c 3-); do
-    GITRPTFLAG=0
-    BRANCHRPTFLAG=0
+    GIT_STATUS=0
+    BRANCH_STATUS=0
 
     numrepos=$numrepos+1
     # We have to go to the .git parent directory to execute "git status"
@@ -162,21 +163,21 @@ for i in $(find . -name ".git" | cut -c 3-); do
     # Summarise informative  messages from the git status report  
     echo $GITREPORT | grep -i  'working directory clean' > /dev/null
     if [ $? != 0 ] ; then
-        fnc_writereport $i GITREPORT GITRPTFLAG
+        fnc_writereport $i GITREPORT GIT_STATUS
         notclean=$notclean+1 
         echo '##### Issue is: Local working directory is not clean!' >> $REPORTFILE
     fi    
 
     echo $GITREPORT | grep -i  "fatal\|error" > /dev/null
     if [ $? == 0 ] ; then
-        fnc_writereport $i GITREPORT GITRPTFLAG
+        fnc_writereport $i GITREPORT GIT_STATUS
         echo '##### Issue is: Error found in git status report' >> $REPORTFILE
         numerror=$numerror+1
     fi  
 
     echo $GITREPORT | grep   'HEAD detached' > /dev/null
     if [ $? == 0 ] ; then
-        fnc_writereport $i GITREPORT GITRPTFLAG
+        fnc_writereport $i GITREPORT GIT_STATUS
         echo '##### Issue is: Detached HEAD in git status report' >> $REPORTFILE
         numheads=$numheads+1
     fi  
@@ -188,14 +189,14 @@ for i in $(find . -name ".git" | cut -c 3-); do
 
     echo $BRANCHREPORT | grep   '\[behind' > /dev/null
     if [ $? == 0 ] ; then
-        fnc_writereport $i BRANCHREPORT BRANCHRPTFLAG
+        fnc_writereport $i BRANCHREPORT BRANCH_STATUS
         echo '##### Issue is: BEHIND in branch status report' >> $REPORTFILE
         behinds=$behinds+1
     fi
 
     echo $BRANCHREPORT | grep   '\[ahead' > /dev/null
     if [ $? == 0 ] ; then
-        fnc_writereport $i BRANCHREPORT BRANCHRPTFLAG
+        fnc_writereport $i BRANCHREPORT BRANCH_STATUS
         echo '##### Issue is: AHEAD  in branch status report' >> $REPORTFILE        
         aheads=$aheads+1
     fi
