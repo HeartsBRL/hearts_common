@@ -10,10 +10,10 @@ if [ $# -eq 0 ]; then
     exit
 fi
 echo
-echo "use ntp to time syc to "$1
+echo "use ntp to time sync to "$1
 echo
 sudo service ntp stop
-sudo ntpdate -v $1
+sudo ntpdate -s $1
 sudo service ntp start
 echo
 echo "Time sync completed"

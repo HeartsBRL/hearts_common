@@ -8,6 +8,9 @@
 #
 ################################################################################
 # Updates:
+# 14 Feb 2019 Derek - added a "ToDo" colour
+#                     also aded keyword before users txt for message type
+#                     eg prt.debug now prints "DEBUG: <users text here>""
 #
 ################################################################################
 # usage:
@@ -86,13 +89,13 @@ class tc(object):
 
    
     # Standard text styles
-    def debug   (self,txt): print tc.fg_white  +tc.bold      +tc.bg_blue+tc.norm    + tc.end.format(txt)
+    def debug   (self,txt): print tc.fg_white  +tc.bold      +tc.bg_blue+tc.norm    + tc.end.format("DEBUG  : "+txt)
     def input   (self,txt): print tc.fg_blue   +tc.bold                             + tc.end.format(txt)
-    def warning (self,txt): print tc.fg_yellow +tc.bold                             + tc.end.format(txt)
-    def error   (self,txt): print tc.fg_red    +tc.bold      +tc.bg_white+tc.norm   + tc.end.format(txt)
-    def info    (self,txt): print tc.fg_cyan   +tc.bold                             + tc.end.format(txt)
+    def warning (self,txt): print tc.fg_yellow +tc.bold                             + tc.end.format("WARNING: "+txt)
+    def error   (self,txt): print tc.fg_red    +tc.bold      +tc.bg_white+tc.norm   + tc.end.format("ERROR  : "+txt)
+    def info    (self,txt): print tc.fg_cyan   +tc.bold                             + tc.end.format("INFO   : "+txt)
     def result  (self,txt): print tc.fg_green  +tc.bold                             + tc.end.format(txt)
-
+    def todo    (self,txt): print tc.fg_yellow  +tc.bold      +tc.bg_blue+tc.norm   + tc.end.format("TODO   : "+txt)
 if __name__ == '__main__':   
     import text_colours
 
@@ -105,6 +108,7 @@ if __name__ == '__main__':
     prt.error  ("ERROR  : This is the colour for     fatal error messages")
     prt.info   ("INFO   : This is the colour for useful Message/status info during processing")  
     prt.result ("RESULT : This is the colour for significant results")
+    prt.todo   ("ToDo   : This is the colour for yet todo items!")
 
     print("\nNormal Colours .....")
     prt.red     ("RED      : my text in RED")
