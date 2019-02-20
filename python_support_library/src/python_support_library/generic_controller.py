@@ -7,8 +7,14 @@ import std_srvs.srv
 import alsaaudio
 from collections import Counter
 
+import python_support_library.text_colours as TC
+prt =TC.tc()
+
 class GenericController(object):
     def __init__(self):
+
+
+
         # init subscribers
         rospy.Subscriber("/hearts/navigation/status", String, self.navigation_callback)#tbm2
 
@@ -99,6 +105,7 @@ class GenericController(object):
 
         '''
         rospy.loginfo("-----------Starting stt_detect_words-------------")
+
         tries = 0
 
         #word = str(word)
