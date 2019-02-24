@@ -1,13 +1,15 @@
 #!/bin/bash
 #############################################################################################
 # script  : check_all_repos_and_report.sh
-# author  : Derek Rpper
+# author  : Derek Ripper
 # Created : 17 Feb 2018
 # Purpose : To check the status of all HEARTS repositories in ~/workspaces/hearts_erl/src
 #           Based on check_all_repos.sh BUT now a file is writtenof all data that needed
 #           to be reviewed. File is: /home/$USER/repo_report.txt 
 #############################################################################################
 # Updates:
+# 24 Feb 2019 Derek - Fixed misleading output when repo was all OK except "local being out of
+#                     date with remote." ie had wrong repo title for this special case. 
 #############################################################################################
 
 function fnc_writeheader() {
@@ -99,6 +101,7 @@ declare -i repobehind=0
 
 declare -i GIT_STATUS=0
 declare -i BRANCH_STATUS=0
+declare -i LOCAL_TO_REMOTE_STATUS=0
 
 
 # store the current dir
@@ -160,6 +163,9 @@ for i in $(find . -name ".git" | cut -c 3-); do
     BRANCHREPORT=`git branch -av`
     echo "##########    END for all Branches:"
 
+    # store copy of git local status report
+    LOCALREMOTEREPORT=`git remote show origin`
+
     # Summarise informative  messages from the git status report  
     echo $GITREPORT | grep -i  'working directory clean' > /dev/null
     if [ $? != 0 ] ; then
@@ -208,11 +214,11 @@ for i in $(find . -name ".git" | cut -c 3-); do
 
     # check if local repo out of date with'remote'
     echo -e $YELLOW'----------------- Check "local repo" to "remote repo" status'
-    git remote show origin | grep -i "local out of date"
+    echo $LOCALREMOTEREPORT | grep -i "local out of date"
     if [ $? == 0 ] ; then
         repobehind=$repobehind+1
-        echo "##### Issue is: Local Repository out of date with remote - see report below:" >> $REPORTFILE
-        git remote show origin                                           >> $REPORTFILE
+        fnc_writereport $i LOCALREMOTEREPORT LOCAL_TO_REMOTE_STATUS
+        echo "##### Issue is: Local Repository out of date with remote - see report below:" >> $REPORTFILE                                                         >> $REPORTFILE
     fi    
     
     echo "______________________________________________________________";
