@@ -8,6 +8,9 @@
 #
 ################################################################################
 # Updates:
+# 14 Feb 2019 Derek - added a "ToDo" colour
+#                     also aded keyword before users txt for message type
+#                     eg prt.debug now prints "DEBUG: <users text here>""
 #
 ################################################################################
 # usage:
@@ -86,21 +89,43 @@ class tc(object):
 
    
     # Standard text styles
-    def debug   (self,txt): print tc.fg_white  +tc.bold      +tc.bg_blue+tc.norm    + tc.end.format(txt)
-    def warning (self,txt): print tc.fg_yellow +tc.bold                             + tc.end.format(txt)
-    def error   (self,txt): print tc.fg_red    +tc.bold                             + tc.end.format(txt)
-    def info    (self,txt): print tc.fg_cyan   +tc.bold                             + tc.end.format(txt)
+    def debug   (self,txt): print tc.fg_white  +tc.bold      +tc.bg_blue+tc.norm    + tc.end.format("DEBUG  : "+txt)
+    def input   (self,txt): print tc.fg_blue   +tc.bold                             + tc.end.format(txt)
+    def warning (self,txt): print tc.fg_yellow +tc.bold                             + tc.end.format("WARNING: "+txt)
+    def error   (self,txt): print tc.fg_red    +tc.bold      +tc.bg_white+tc.norm   + tc.end.format("ERROR  : "+txt)
+    def info    (self,txt): print tc.fg_cyan   +tc.bold                             + tc.end.format("INFO   : "+txt)
     def result  (self,txt): print tc.fg_green  +tc.bold                             + tc.end.format(txt)
-
-if __name__ == '__main__':
-    
+    def todo    (self,txt): print tc.fg_yellow  +tc.bold      +tc.bg_blue+tc.norm   + tc.end.format("TODO   : "+txt)
+if __name__ == '__main__':   
     import text_colours
 
     prt = text_colours.tc()
 
-    prt.debug  ("DEBUG  : This is a colour for temporary debug messages")    
-    prt.warning("WARNING: This is the colour for non-fatal messages")
-    prt.error  ("ERROR  : This the colour for fatal error messages")
-    prt.result ("RESULTS: This is the colour for significant results")
-    prt.info   ("INFO   : Message info during processing")
+    print("\nStandard Styles to be used for the purpose indicated .....")
+    prt.debug  ("DEBUG  : This is the colour for temporary debug messages")    
+    prt.input  ("INPUT  : This is the colour for asking for input data")
+    prt.warning("WARNING: This is the colour for non-fatal       messages")
+    prt.error  ("ERROR  : This is the colour for     fatal error messages")
+    prt.info   ("INFO   : This is the colour for useful Message/status info during processing")  
+    prt.result ("RESULT : This is the colour for significant results")
+    prt.todo   ("ToDo   : This is the colour for yet todo items!")
+
+    print("\nNormal Colours .....")
+    prt.red     ("RED      : my text in RED")
+    prt.green   ("GREEN    : my text in GREEN")
+    prt.yellow  ("YELLOW   : my text in YELLOW")
+    prt.blue    ("BLUE     : my text in BLUE")
+    prt.magenta ("MAGENTA  : my text in MAGENTA")
+    prt.cyan    ("CYAN     : my text in CYAN")
+    prt.white   ("WHITE    : my text in WHITE")
+
+    print("\nBold Colours .....")
+    prt.bred    ("RED      : my text in BOLD  RED")
+    prt.bgreen  ("GREEN    : my text in BOLD  GREEN")
+    prt.byellow ("YELLOW   : my text in BOLD  YELLOW")
+    prt.bblue   ("BLUE     : my text in BOLD  BLUE")
+    prt.bmagenta("MAGENTA  : my text in BOLD  MAGENTA")
+    prt.bcyan   ("CYAN     : my text in BOLD  CYAN")
+    prt.bwhite  ("WHITE    : my text in BOLD  WHITE\n")
+
 

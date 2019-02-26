@@ -7,22 +7,30 @@ import std_srvs.srv
 import alsaaudio
 from collections import Counter
 
+import python_support_library.text_colours as TC
+prt =TC.tc()
+
 class GenericController(object):
     def __init__(self):
+
+
         # init subscribers
         rospy.Subscriber("/hearts/navigation/status", String, self.navigation_callback)#tbm2
 
         # init publishers
-        self.tts_pub =           rospy.Publisher("/hearts/tts", String, queue_size=10) #tbm2
+        self.tts_pub           = rospy.Publisher("/hearts/tts", String, queue_size=10) #tbm2
+        self.pub_stt_toggle    = rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
         self.pub_location_goal = rospy.Publisher('/hearts/navigation/goal/location',
                                                                 String, queue_size=10) #tbm2
-        self.pub_motion =        rospy.Publisher("motion_name", String, queue_size=10)
-        self.pub_stt_toggle =    rospy.Publisher("/hearts/stt_toggle", Bool, queue_size = 10)
+        self.pub_motion        = rospy.Publisher("motion_name", String, queue_size=10)
+        self.pub_follow_toggle = rospy.Publisher("/hearts/follow_toggle", Bool, queue_size = 10)
+
+
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
 
 
         #self.cost_clear = rospy.ServiceProxy('move_base/clear_costmaps',std_srvs/EmptyRequest)
-        self.mixer_mic =          alsaaudio.Mixer(control='Capture')
+        self.mixer_mic         = alsaaudio.Mixer(control='Capture')
 
         #init toggle
         self.toggle_stt('on')
@@ -54,14 +62,14 @@ class GenericController(object):
             msg.data = True
             self.pub_stt_toggle.publish(msg)
             self.mixer_mic.setrec(1)
-            print('***** Listening for speech, converting speech to text')
+            print('***** Listening for speech, converting speech to text *****')
         else:
             msg = Bool()
             msg.data = False
             self.pub_stt_toggle.publish(msg)
             self.sub_cmd.unregister()
             self.mixer_mic.setrec(0)
-            print('***** NOT! Listening for speech')
+            print('***** NOT! Listening for speech *****')
 
         return
 
@@ -99,6 +107,7 @@ class GenericController(object):
 
         '''
         rospy.loginfo("-----------Starting stt_detect_words-------------")
+
         tries = 0
 
         #word = str(word)
@@ -160,7 +169,8 @@ class GenericController(object):
             #TODO should an actual error be thrown here?
             return False
         else:
-            self.say("I have arrived at the "+target_location+" location")
+            rospy.loginfo("I have arrived at the "+target_location+" location")
+            #self.say("I have arrived at the "+target_location+" location")
             return True
 
     def wait_to_arrive(self, num_retries):
@@ -194,3 +204,22 @@ class GenericController(object):
         #rospy.sleep(5)
 
         #TODO some sort of making sure you actually get there before moving on
+
+    ########################## FOLLOWING #######################################
+
+    def toggle_follow(self, status):
+        ''' Turns following behaviour on and off
+            how to use: self.toggle_follow('on') to turn on following, self.toggle_follow('off') to turn off following.
+            The robot should begin following the nearest person and continue to do so even if someone else crosses the paths.  '''
+
+        if status == 'on' :
+            msg = Bool()
+            msg.data = True
+            self.pub_follow_toggle.publish(msg)
+            print('***** follow_toggle ON *****')
+
+        else:
+            msg = Bool()
+            msg.data = False
+            self.pub_follow_toggle.publish(msg)
+            print('***** follow_toggle OFF *****')
