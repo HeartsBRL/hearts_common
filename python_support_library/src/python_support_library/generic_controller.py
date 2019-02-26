@@ -216,10 +216,10 @@ class GenericController(object):
             msg = Bool()
             msg.data = True
             self.pub_follow_toggle.publish(msg)
-            print('***** follow_toggle ON *****')
+            prt.info('***** follow_toggle ON *****')
 
         else:
             msg = Bool()
             msg.data = False
             self.pub_follow_toggle.publish(msg)
-            print('***** follow_toggle OFF *****')
+            prt.info('***** follow_toggle OFF *****')
