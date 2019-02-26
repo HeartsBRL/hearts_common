@@ -34,12 +34,12 @@ class GenericController(object):
         self.speech = None
 
     ######################## SPEECH PRODUCTION FROM TBM2 ########################################
-    def say(self, text):
+    def say(self, text, duration=5):
         ''' Publish text to tts_pub where text is then spoken aloud by tiago'''
         rospy.loginfo("saying \"" + text + "\"")
-        rospy.sleep(1)
+        #rospy.sleep(1)
         self.tts_pub.publish(text)
-        rospy.sleep(5)
+        rospy.sleep(duration)
 
     ########################### LISTEN TO SPEECH ################################################
     def toggle_stt(self,status):
