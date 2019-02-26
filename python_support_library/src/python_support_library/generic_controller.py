@@ -169,7 +169,8 @@ class GenericController(object):
             #TODO should an actual error be thrown here?
             return False
         else:
-            self.say("I have arrived at the "+target_location+" location")
+            rospy.loginfo("I have arrived at the "+target_location+" location")
+            #self.say("I have arrived at the "+target_location+" location")
             return True
 
     def wait_to_arrive(self, num_retries):
