@@ -23,7 +23,8 @@ class GenericController(object):
         self.pub_location_goal = rospy.Publisher('/hearts/navigation/goal/location',
                                                                 String, queue_size=10) #tbm2
         self.pub_motion        = rospy.Publisher("motion_name", String, queue_size=10)
-        self.pub_follow_toggle = rospy.Publisher("/hearts/follow_toggle", Bool, queue_size = 10)
+        self.pub_follow_toggle = rospy.Publisher("/hearts/follow_toggle", Bool, queue_size = 1)
+        self.pub_vision_toggle = rospy.Publisher("cob_detector_toggle", Bool, queue_size = 1)
 
 
         #rospy.wait_for_service('move_base/clear_costmaps') #TODO implement
@@ -220,7 +221,8 @@ class GenericController(object):
     def toggle_follow(self, status):
         ''' Turns following behaviour on and off
             how to use: self.toggle_follow('on') to turn on following, self.toggle_follow('off') to turn off following.
-            The robot should begin following the nearest person and continue to do so even if someone else crosses the paths.  '''
+            The robot should begin following the nearest person and continue to do so even if someone else crosses the paths.
+            **In development, may start following another person** '''
 
         if status == 'on' :
             msg = Bool()
@@ -232,4 +234,21 @@ class GenericController(object):
             msg = Bool()
             msg.data = False
             self.pub_follow_toggle.publish(msg)
-            prt.info('***** follow_toggle OFF *****')
+            print('***** follow_toggle OFF *****')
+
+
+   def toggle_vision(self, status):
+        ''' Turns vision on and off
+            how to use: self.toggle_follow('on') to turn on vision, self.toggle_follow('off') to turn off vision.  '''
+
+        if status == 'on' :
+            msg = Bool()
+            msg.data = True
+            self.pub_vision_toggle.publish(msg)
+            print('***** vision_toggle ON *****')
+
+        else:
+            msg = Bool()
+            msg.data = False
+            self.pub_vision_toggle.publish(msg)
+            print('***** vision_toggle OFF *****')
