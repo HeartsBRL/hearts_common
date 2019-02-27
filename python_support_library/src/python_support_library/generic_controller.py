@@ -142,6 +142,7 @@ class GenericController(object):
                 tries += 1
             else:
                 rospy.loginfo("Stopping Listening for: '"+word+"'")
+                self.toggle_stt('off')
                 rospy.loginfo("-----------Ending stt_detect_words-------------")
                 return (False, None)
                 #break
