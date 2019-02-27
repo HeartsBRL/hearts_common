@@ -46,9 +46,9 @@ class GenericController(object):
         ''' Publish text to tts_pub where text is then spoken aloud by tiago'''
         rospy.loginfo("saying \"" + text + "\"")
         #rospy.sleep(1)
-        if duration == None
+        if duration == None:
             duration = 0.1*len(text)
-            
+
         self.tts_pub.publish(text)
         rospy.sleep(duration)
 
@@ -64,6 +64,7 @@ class GenericController(object):
             msg = Bool()
             msg.data = True
             self.pub_stt_toggle.publish(msg)
+            rospy.sleep(0.5)
             self.mixer_mic.setrec(1)
             print('***** Listening for speech, converting speech to text *****')
         else:
@@ -71,6 +72,7 @@ class GenericController(object):
             msg.data = False
             self.pub_stt_toggle.publish(msg)
             self.sub_cmd.unregister()
+            rospy.sleep(0.5)
             self.mixer_mic.setrec(0)
             print('***** NOT! Listening for speech *****')
 
@@ -93,7 +95,9 @@ class GenericController(object):
 
         # check that text has been returned
         if "bad_recognition" in speech:
+            self.toggle_stt('off')
             self.say("Sorry, no words were recognised.")
+            self.toggle_stt('on')
 
         self.speech = speech
 
