@@ -67,7 +67,7 @@ class GenericController(object):
             self.pub_stt_toggle.publish(msg)
             rospy.sleep(0.5)
             #self.mixer_mic.setrec(1)
-            self.mixer_mic.setmute(0)
+            #self.mixer_mic.setvolume(150)
             rospy.loginfo('***** Listening for speech, converting speech to text *****')
         else:
             msg = Bool()
@@ -76,7 +76,7 @@ class GenericController(object):
             self.sub_cmd.unregister()
             rospy.sleep(0.5)
             #self.mixer_mic.setrec(0)
-            self.mixer_mic.setmute(1)
+            #self.mixer_mic.setvolume(0)
             rospy.loginfo('***** NOT! Listening for speech *****')
 
         return
@@ -237,7 +237,7 @@ class GenericController(object):
             print('***** follow_toggle OFF *****')
 
 
-   def toggle_vision(self, status):
+    def toggle_vision(self, status):
         ''' Turns vision on and off
             how to use: self.toggle_follow('on') to turn on vision, self.toggle_follow('off') to turn off vision.  '''
 
