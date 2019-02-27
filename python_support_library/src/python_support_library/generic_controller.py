@@ -66,7 +66,7 @@ class GenericController(object):
             self.pub_stt_toggle.publish(msg)
             rospy.sleep(0.5)
             self.mixer_mic.setrec(1)
-            print('***** Listening for speech, converting speech to text *****')
+            rospy.loginfo('***** Listening for speech, converting speech to text *****')
         else:
             msg = Bool()
             msg.data = False
@@ -74,7 +74,7 @@ class GenericController(object):
             self.sub_cmd.unregister()
             rospy.sleep(0.5)
             self.mixer_mic.setrec(0)
-            print('***** NOT! Listening for speech *****')
+            rospy.loginfo('***** NOT! Listening for speech *****')
 
         return
 
