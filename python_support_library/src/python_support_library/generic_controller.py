@@ -47,9 +47,9 @@ class GenericController(object):
         ''' Publish text to tts_pub where text is then spoken aloud by tiago'''
         rospy.loginfo("saying \"" + text + "\"")
         #rospy.sleep(1)
-        if duration == None
+        if duration == None:
             duration = 0.1*len(text)
-            
+
         self.tts_pub.publish(text)
         rospy.sleep(duration)
 
@@ -65,15 +65,17 @@ class GenericController(object):
             msg = Bool()
             msg.data = True
             self.pub_stt_toggle.publish(msg)
+            rospy.sleep(0.5)
             self.mixer_mic.setrec(1)
-            print('***** Listening for speech, converting speech to text *****')
+            rospy.loginfo('***** Listening for speech, converting speech to text *****')
         else:
             msg = Bool()
             msg.data = False
             self.pub_stt_toggle.publish(msg)
             self.sub_cmd.unregister()
+            rospy.sleep(0.5)
             self.mixer_mic.setrec(0)
-            print('***** NOT! Listening for speech *****')
+            rospy.loginfo('***** NOT! Listening for speech *****')
 
         return
 
@@ -94,7 +96,9 @@ class GenericController(object):
 
         # check that text has been returned
         if "bad_recognition" in speech:
+            self.toggle_stt('off')
             self.say("Sorry, no words were recognised.")
+            self.toggle_stt('on')
 
         self.speech = speech
 
@@ -143,6 +147,7 @@ class GenericController(object):
                 tries += 1
             else:
                 rospy.loginfo("Stopping Listening for: '"+word+"'")
+                self.toggle_stt('off')
                 rospy.loginfo("-----------Ending stt_detect_words-------------")
                 return (False, None)
                 #break
@@ -221,15 +226,15 @@ class GenericController(object):
             msg = Bool()
             msg.data = True
             self.pub_follow_toggle.publish(msg)
-            print('***** follow_toggle ON *****')
+            prt.info('***** follow_toggle ON *****')
 
         else:
             msg = Bool()
             msg.data = False
             self.pub_follow_toggle.publish(msg)
             print('***** follow_toggle OFF *****')
-            
-            
+
+
    def toggle_vision(self, status):
         ''' Turns vision on and off
             how to use: self.toggle_follow('on') to turn on vision, self.toggle_follow('off') to turn off vision.  '''
@@ -245,5 +250,3 @@ class GenericController(object):
             msg.data = False
             self.pub_vision_toggle.publish(msg)
             print('***** vision_toggle OFF *****')
-            
-         
