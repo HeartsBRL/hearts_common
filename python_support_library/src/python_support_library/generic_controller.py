@@ -48,7 +48,7 @@ class GenericController(object):
         rospy.loginfo("saying \"" + text + "\"")
         #rospy.sleep(1)
         if duration == None:
-            duration = 0.1*len(text)
+            duration = 0.15*len(text) 
 
         self.tts_pub.publish(text)
         rospy.sleep(duration)
