@@ -1,0 +1,523 @@
+[33m
+
+***********************************************************
+***** Checking the status of all git repositories in: *****
+***** /home/hearts/workspaces/hearts_erl/src
+***********************************************************
+***** on Wed Jan 30 15:18:10 GMT 2019
+***********************************************************
+[0m
+[33m ########### hearts_navigation/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   hearts_navigation/data/erl_2018_2/erl_2018_2/submap_0.pgm
+	modified:   hearts_navigation/data/locations.json
+	deleted:    hearts_navigation/data/locations_TEST.json
+	deleted:    hearts_navigation/data/locations_test.json
+	deleted:    hearts_navigation/data/locations_test_tb.json
+	modified:   hearts_navigation/launch/hearts_navigation_map_end.launch
+	modified:   hearts_navigation/launch/hearts_navigation_navigate.launch
+	modified:   hearts_navigation/scripts/acceleration.py
+	modified:   hearts_navigation/scripts/erl_transform.py
+	modified:   hearts_navigation/scripts/location_goal.py
+	modified:   hearts_navigation/scripts/navigator.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	hearts_navigation/data/locations_FAKE.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+  erl_frame                cb397e7 fixed mapping
+* master                   c039b34 yaml files for costmap config
+  remotes/origin/HEAD      -> origin/master
+  remotes/origin/erl_frame cb397e7 fixed mapping
+  remotes/origin/master    c039b34 yaml files for costmap config
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+RSBB git submodule area -- It is updated as a submodule which is different from normal!
+                           see ERL RSBB install documentation.
+
+[33m ########### at_home_rsbb_comm_ros/comm/.git  -  CHECKOUT Branch is: [32m(detached from 6eeb91d)[0m
+
+HEAD detached at 6eeb91d
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	gen/roah_rsbb_msgs/CTestTestfile.cmake
+	include/CTestTestfile.cmake
+	libs/CTestTestfile.cmake
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+########## LOCAL/REMOTE : Branches:
+* (detached from 6eeb91d)       6eeb91d Merge pull request #1 from Enri2077/master
+  master                        6eeb91d Merge pull request #1 from Enri2077/master
+  remotes/origin/HEAD           -> origin/master
+  remotes/origin/RSBBv1         8a7927f Merge branch 'fbm2_revision' into 'master'
+  remotes/origin/feature-tablet 6b9664a Tablet tests
+  remotes/origin/master         6eeb91d Merge pull request #1 from Enri2077/master
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### at_home_rsbb_comm_ros/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   comm (untracked content)
+	modified:   launch/dummy.launch
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+* master                9c88a2f Merge pull request #2 from Enri2077/master
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/RSBBv1 dcfe750 Merge branch 'fbm2_revision' into 'master'
+  remotes/origin/master 9c88a2f Merge pull request #2 from Enri2077/master
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_msgs/pal_msgs/.git  -  CHECKOUT Branch is: [32mindigo-devel[0m
+
+On branch indigo-devel
+Your branch is up-to-date with 'origin/indigo-devel'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	pal_walking_msgs/CATKIN_IGNORE
+	pal_walking_msgs/CATKIN_IGNORE~
+	pal_walking_msgs/GIT_IGNORE
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+########## LOCAL/REMOTE : Branches:
+* indigo-devel                8a3ee98 copy message from pal_vision_msgs to pal_detection
+  remotes/origin/HEAD         -> origin/indigo-devel
+  remotes/origin/hydro-devel  6d1f38b Merge pull request #14 from pal-robotics/cobalt-devel
+  remotes/origin/indigo-devel 8a3ee98 copy message from pal_vision_msgs to pal_detection
+  remotes/origin/max-curr     92147b7 Deprecate original current limiting message
+  remotes/origin/sde4         9b1a421 add size of object in SelectTexturedObject and add comments on both messages
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    indigo-devel pushes to indigo-devel (local out of date)
+______________________________________________________________
+[0m
+[33m ########### hearts_msgs/navigation_msgs/.git  -  CHECKOUT Branch is: [32mjade-devel[0m
+
+On branch jade-devel
+Your branch is up-to-date with 'origin/jade-devel'.
+
+nothing to commit, working directory clean
+
+########## LOCAL/REMOTE : Branches:
+* jade-devel                     a1b7247 Merge pull request #3 from ros-planning/fix_package_xml_indendation
+  remotes/origin/HEAD            -> origin/jade-devel
+  remotes/origin/jade-devel      a1b7247 Merge pull request #3 from ros-planning/fix_package_xml_indendation
+  remotes/origin/ros2            cc3f360 2.0.0
+  remotes/origin/wjwwood-patch-1 77e3e41 add missing --- in services, which ROS 2 requires
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_msgs/.git  -  CHECKOUT Branch is: [32mB_move_base_msgs[0m
+
+On branch B_move_base_msgs
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	navigation_msgs/
+	pal_msgs/
+	play_motion_msgs/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+########## LOCAL/REMOTE : Branches:
+* B_move_base_msgs                63f4702 Merge branch 'master' of https://github.com/HeartsBRL/hearts_msgs into B_move_base_msgs
+  master                          023f488 [behind 1] adding initial code base
+  remotes/origin/B_move_base_msgs e496baf README for adding the messages required for move_base_msgs and pal_msgs
+  remotes/origin/HEAD             -> origin/master
+  remotes/origin/master           1bec161 messages for handling 3D points when following
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    master           pushes to master           (local out of date)
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/ros_astra_launch/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working directory clean
+
+########## LOCAL/REMOTE : Branches:
+* master                94bada1 0.2.2
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master 94bada1 0.2.2
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/ros_astra_camera/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working directory clean
+
+########## LOCAL/REMOTE : Branches:
+* master                       81b9ce2 melodic fix for build error where warnings are errors
+  remotes/origin/HEAD          -> origin/master
+  remotes/origin/filterlibrary e9efe0d update udev files
+  remotes/origin/master        81b9ce2 melodic fix for build error where warnings are errors
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/ros_people_object_detection_tensorflow/src/sort/.git  -  CHECKOUT Branch is: [32m[0m
+
+
+########## LOCAL/REMOTE : Branches:
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/ros_people_object_detection_tensorflow/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is behind 'origin/master' by 5 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   launch/action_recognition_params.yaml
+	modified:   launch/alltogether.launch
+	modified:   launch/cob_face_recognizer_params.yaml
+	modified:   launch/cob_people_object_detection_tensorflow_params.yaml
+	modified:   launch/projection_params.yaml
+	deleted:    people/benedikt.png
+	deleted:    people/cagatay.png
+	deleted:    "people/g\303\266tze.png"
+	modified:   src/projection.py
+	modified:   src/sort (untracked content)
+	modified:   src/tracker.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	people/alessandro.png
+	people/doctor.png
+	people/lizzie.png
+	people/maysam.png
+	people/postman.png
+	src/object_detection/model_ava_2018/
+	src/object_detection/model_coco_2018/
+	src/object_detection/model_faster_rcnn_resnet101_coco_106ms/
+	src/object_detection/model_inaturalist_2018/
+	src/object_detection/model_kitti_2018/
+	src/object_detection/model_open_2018/
+	src/object_detection/model_ssd_mobilenet_v1_0.75_depth_coco_26ms/
+	src/object_detection/model_ssd_mobilenet_v1_fpn_coco_56ms/
+	src/object_detection/ssd_mobilenet_v1_coco/
+	src/projection_ORIGINAL.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+* master                            e301e3c [behind 5] Merge pull request #36 from cagbal/bug-fix
+  remotes/origin/HEAD               -> origin/master
+  remotes/origin/master             72c58e5 Merge pull request #41 from cagbal/bug-fix
+  remotes/origin/new-feature-ac-dev bcf11f9 Merge branch 'master' of https://github.com/cagbal/ros_people_object_detection_tensorflow into new-feature-ac-dev
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    master pushes to master (local out of date)
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/cob_perception_common/.git  -  CHECKOUT Branch is: [32mindigo_dev[0m
+
+On branch indigo_dev
+Your branch is up-to-date with 'origin/indigo_dev'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   cob_perception_msgs/CMakeLists.txt
+	modified:   cob_perception_msgs/msg/DetectionArray.msg
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	cob_perception_msgs/msg/DetectionLife.msg
+	cob_perception_msgs/msg/Life.msg
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+* indigo_dev                                1851aa5 Added action recognition msg
+  remotes/origin/HEAD                       -> origin/indigo_dev
+  remotes/origin/electric                   3d41a37 changed license
+  remotes/origin/electric_dev               d4318e3 changed thickness of bounding box marker
+  remotes/origin/electric_release_candidate 3d41a37 changed license
+  remotes/origin/fuerte                     bc27fdf Merge pull request #7 from ipa320/master
+  remotes/origin/fuerte_dev                 fd4cd33 Merge remote-tracking branch 'origin-ipa-jsf/master' into automerge
+  remotes/origin/fuerte_release_candidate   38c1247 Merge pull request #6 from ipa320/master
+  remotes/origin/groovy_dev                 bb78952 Added field ID
+  remotes/origin/groovy_dev_catkin          c973bcb Merge pull request #15 from Equanox/groovy_dev_catkin
+  remotes/origin/groovy_release_candidate   7f4e2fd Merge pull request #10 from ipa-rmb/groovy_dev
+  remotes/origin/hydro_dev                  807a861 Merge pull request #39 from ipa320/hydro_release_candidate
+  remotes/origin/hydro_release_candidate    945c31a 0.5.12
+  remotes/origin/indigo_dev                 1851aa5 Added action recognition msg
+  remotes/origin/indigo_release_candidate   70050a8 Merge pull request #89 from ipa320/indigo_dev
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_vision/.git  -  CHECKOUT Branch is: [32mCagBalDetection[0m
+
+On branch CagBalDetection
+Your branch is up-to-date with 'origin/CagBalDetection'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   aggregator/launch/face_detector.launch
+	modified:   aggregator/scripts/face_recog_TBM2_controller.py
+	modified:   cob_perception_common (modified content, untracked content)
+	modified:   hearts_camera_saver/scripts/save_cam_images.py
+	modified:   ros_people_object_detection_tensorflow (modified content, untracked content)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+  B_deps_opencv_contrib                45ac891 GAZE CONTROL CODE COMMENTED (DO NOT PUSH THIS BRANCH)
+* CagBalDetection                      31676dd Topics arrangement. NOW LOOKING AT OBJECT AND GIVING xyz
+  cobObjectDetection                   c43c8b3 Update readme.md
+  master                               d21dcac added packages necessary for running tbm2 to the hearts_vision repository
+  remotes/origin/B_deps_opencv_contrib 45ac891 GAZE CONTROL CODE COMMENTED (DO NOT PUSH THIS BRANCH)
+  remotes/origin/CagBalDetection       31676dd Topics arrangement. NOW LOOKING AT OBJECT AND GIVING xyz
+  remotes/origin/HEAD                  -> origin/master
+  remotes/origin/cobObjectDetection    c43c8b3 Update readme.md
+  remotes/origin/master                d21dcac added packages necessary for running tbm2 to the hearts_vision repository
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    CagBalDetection       pushes to CagBalDetection       (local out of date)
+______________________________________________________________
+[0m
+[33m ########### hearts_benchmarks/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    tbm1_getting_to_know_my_home/output/sementic_map.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	tbm1_getting_to_know_my_home/output/GIT_IGNORE
+	tbm1_getting_to_know_my_home/output/door_entrance.jpg
+	tbm1_getting_to_know_my_home/output/semantic_map.txt
+	tbm1_getting_to_know_my_home/output/sementic_map1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+  F_TBM3_for_season_2                        13297c9 TBM3 lst commit before going to generic controller code on a mew branch off master
+  add-generic-controller                     4ab34bb [ahead 2] more judge connection tinkers
+* master                                     273c0d3 adding line writer for semantic map to controller
+  remotes/origin/B_deps_opencv_contrib       6e3f501 adding 2017 benchmarks
+  remotes/origin/F_TBM3_for_season_2         13297c9 TBM3 lst commit before going to generic controller code on a mew branch off master
+  remotes/origin/HEAD                        -> origin/master
+  remotes/origin/add-generic-controller      580086a Update tbm1&2 to use derek's python importer
+  remotes/origin/integrate-postman-movements 38e95bf Correct syntax errors
+  remotes/origin/master                      273c0d3 adding line writer for semantic map to controller
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_manipulation/.git  -  CHECKOUT Branch is: [32mpickup_rewrite[0m
+
+On branch pickup_rewrite
+Your branch is ahead of 'origin/pickup_rewrite' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    hearts_arm_control/config/pick_and_place_params.yaml
+	modified:   hearts_arm_control/scripts/motion_player.py
+	modified:   hearts_arm_control/scripts/msg_pub.py
+	modified:   hearts_arm_control/scripts/pick_and_place_server.py
+	modified:   hearts_arm_control/scripts/pick_client.py
+	modified:   hearts_arm_control/scripts/spherical_grasps_server.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+  master                        d6c6533 [behind 10] fixed data type in callback function
+* pickup_rewrite                e67acde [ahead 7] Merge branch 'master' of https://github.com/HeartsBRL/hearts_manipulation into pickup_rewrite
+  remotes/origin/HEAD           -> origin/master
+  remotes/origin/master         7925911 Merge pull request #1 from HeartsBRL/pickup_rewrite
+  remotes/origin/pickup_rewrite 6481199 launch file for tbm2 motions
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    master         pushes to master         (local out of date)
+______________________________________________________________
+[0m
+[33m ########### hearts_tiago/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working directory clean
+
+########## LOCAL/REMOTE : Branches:
+* master                92bfe47 fixed build issues / msg dependancies
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master 92bfe47 fixed build issues / msg dependancies
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_common/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   python_support_library/src/python_support_library/generic_controller.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	hearts_setup/install/txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+* master                       c7b4f05 added escaped [ - to make ahead/behind unique and not confused with any other text.
+  remotes/origin/HEAD          -> origin/master
+  remotes/origin/documentation e5e608d Update README.md
+  remotes/origin/master        c7b4f05 added escaped [ - to make ahead/behind unique and not confused with any other text.
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+______________________________________________________________
+[0m
+[33m ########### hearts_hri/.git  -  CHECKOUT Branch is: [32mmaster[0m
+
+On branch master
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   hearts_stt/scripts/stt.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	hearts_tts/launch/praminda_celebration.launch
+	hearts_tts/scripts/praminda_celebration.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+########## LOCAL/REMOTE : Branches:
+* master                   f5f0c70 [behind 2] cleaning up unnessary files
+  remotes/origin/HEAD      -> origin/master
+  remotes/origin/RWG       8821d1c stray chars ss -  removed from mono to stero conversion code
+  remotes/origin/following 79c2af6 set up catkin files
+  remotes/origin/master    131c8e2 stt - mods for listening.
+  remotes/origin/pause_stt c785281 Add callback to stop/start stt
+##########    END for all Branches:
+[33m----------------- Check "local repo" to "remote repo" status
+    master pushes to master (local out of date)
+______________________________________________________________
+[0m
+
+TOTAL Number of .git repositories detected       : 17
+
+List of repositories:
+
+/home/hearts/workspaces/hearts_erl/src/hearts_navigation/.git
+/home/hearts/workspaces/hearts_erl/src/at_home_rsbb_comm_ros/comm/.git
+/home/hearts/workspaces/hearts_erl/src/at_home_rsbb_comm_ros/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_msgs/pal_msgs/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_msgs/navigation_msgs/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_msgs/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/ros_astra_launch/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/ros_astra_camera/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/ros_people_object_detection_tensorflow/src/sort/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/ros_people_object_detection_tensorflow/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/cob_perception_common/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_vision/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_benchmarks/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_manipulation/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_tiago/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_common/.git
+/home/hearts/workspaces/hearts_erl/src/hearts_hri/.git
+[33m
+List of any repositiries where master is NOT the current checked out branch:
+
+Repository:  at_home_rsbb_comm_ros/comm/.git -- current CHECKOUT branch:  (detached from 6eeb91d)
+Repository:  hearts_msgs/pal_msgs/.git -- current CHECKOUT branch:  indigo-devel
+Repository:  hearts_msgs/navigation_msgs/.git -- current CHECKOUT branch:  jade-devel
+Repository:  hearts_msgs/.git -- current CHECKOUT branch:  B_move_base_msgs
+Repository:  hearts_vision/ros_people_object_detection_tensorflow/src/sort/.git -- current CHECKOUT branch: 
+Repository:  hearts_vision/cob_perception_common/.git -- current CHECKOUT branch:  indigo_dev
+Repository:  hearts_vision/.git -- current CHECKOUT branch:  CagBalDetection
+Repository:  hearts_manipulation/.git -- current CHECKOUT branch:  pickup_rewrite
+[0m
+TOTAL Number of .git repositories detected       : 17
+Number of .git repositoies CHECKOUT as master'   : 9
+
+****************************************************************************
+***** Please review any messages reported below with a non-zero count! *****
+****************************************************************************
+
+Number of .git repositories  ## NOT clean !! ##    : 13
+Number of .git repositories where repo   is behind : 6 - pull needed
+         *** Counts are For ALL Branches ***         
+Number of .git repositories where branch is behind : 4 - pull needed
+Number of .git repositories where branch is ahead  : 2 - push nedded
+
+Number of .git repositories with HEAD detached     : 1
+
+[32m
+****************************************************************
+****** ALL DONE in: ./check_all_repos.sh
+****** on Wed Jan 30 15:18:10 GMT 2019
+****************************************************************
+[0m
